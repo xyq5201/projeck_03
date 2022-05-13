@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			
+			li{
+				list-style: none;
+				width: 100px;
+				height: 20px;
+				border: 1px solid red;
+				text-align: center;
+				display: inline-block;
+			}
+			img{
+				width: 50px;
+				height: 20px;
+				border: 1px solid aqua;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			
+		</style>
+		<script src="2.js"></script>
+		<script >
+			window.addEventListener('load',function(){
+				var a=document.querySelector('ul')
+				var c=a.querySelectorAll('li')
+				var b=document.querySelector('img')
+				var f=0;//这个做b一开始的位置
+				//循环拿到所有的li
+				for(var i=0;i<c.length;i++){
+				//给所有的li绑定鼠标移入事件
+				c[i].addEventListener('mouseenter',function(){
+					//让b的位置等于当前鼠标经过li的位置
+					aa(b,this.offsetLeft)
+				})
+					//给所有li出绑定鼠标移出事件
+				c[i].addEventListener('mouseleave',function(){
+					//让b又回到f的位置
+					aa(b,f)
+				})
+				//当点击之后停在当前的位置
+				c[i].addEventListener('click',function(){
+					//让变量变成当前小li的位置
+					f=this.offsetLeft;
+				})
+				}
+			})
+		</script>
+	</head>
+	<body>
+			<ul>
+			<li>1</li>
+			<li>1</li>
+			<li>1</li>
+			<li>1</li>
+			<li>1</li>
+		</ul>
+			<img src="img/位置.png" />
+	</body>
+</html>

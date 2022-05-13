@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.a{
+				width: 300px;
+				height: 300px;
+				border: 1px solid red; 
+			}
+			
+			img{
+				width: 300px;
+				height: 300px;
+			}
+			.b{
+				display: none;
+				width: 100px;
+				height: 100px;
+				background-color: rgba(0,0,0,0.2);
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			.f{
+				display: none;
+				width: 400px;
+				height: 400px;
+				border: 1px solid red;
+				overflow: hidden;
+			}
+			.f img{
+				width: 800px;
+				height: 800px;
+			}
+		</style>
+		<script>
+			window.addEventListener('load',function(){
+				var a=document.querySelector('.b')
+				var b=document.querySelector('.a')
+				var c=document.querySelector('.f')
+				var l=document.querySelector('img')
+				var r=document.querySelector('.r')
+				l.addEventListener('mouseover',function(){
+					a.style.display='block'
+					c.style.display='block'
+				})
+				l.addEventListener('mouseout',function(){
+					
+				})
+				l.addEventListener('mousemove',function(e){
+					var aa=e.pageX-this.offsetLeft;
+					var bb=e.pageY-this.offsetTop;
+					var k=aa-a.offsetWidth/2;
+					var yy=bb-a.offsetHeight/2;
+					if (k<=0) {
+						k=0;
+					}else if(yy>=l.offsetWidth-a.offsetWidth){
+						k=l.offsetWidth-a.offsetWidth;
+					}
+				var ff=	a.style.left=k+'px'
+				var gg=	a.style.top=yy+'px'
+					
+				})
+			})
+		</script>
+	</head>
+	<body>
+			<div class="a">
+			<img src="img/fresh_goods_2.jpg" />
+			<div class="b"></div>
+			<div class="f">
+				<img src="img/fresh_goods_2.jpg" class="r" />
+			</div>
+		</div>
+	</body>
+</html>

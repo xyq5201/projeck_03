@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.a{
+				  position: fixed;
+            		right: 0;
+           		 bottom: 100px;
+           		 width: 40px;
+            	height: 40px;
+            	text-align: center;
+            	line-height: 40px;
+            	cursor: pointer;
+            	color: #fff;
+			}
+			.b{
+				 position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 40px;
+            background-color: red;
+            z-index: -1;
+			}
+		</style>
+		<script src="1.js">//一定要记得引入js文件</script>
+		<script>
+			window.addEventListener('load',function(){
+				var h=document.querySelector('.a')
+				var f=document.querySelector('.b')
+				var l=document.querySelector('span')
+				h.addEventListener('mouseover',function(){
+					a(f,160,function(){
+						//当定时器结束之后就把span里面的内容改了
+						l.innerHTML='->'
+					}
+					
+				})
+				h.addEventListener('mouseout',function(){
+					a(f,0,function(){
+						l.innerHTML='<-'
+					})
+					
+			})
+		</script>
+	</head>
+	<body>
+		<div class="a">
+			<span><-</span>
+			<div class="b">问题反馈</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+				top: 20;
+				left: 0;
+			}
+			h1{
+				position: absolute;
+				top: 250px;
+				left: 0;
+			}
+		</style>
+		<script>
+			window.addEventListener('load',function(){
+				//函数封装t 就是动画的对象 l就是距离
+				function g(t,l){
+					clearInterval(t.d);
+				t.d=setInterval(function(){
+				if (t.offsetLeft>=l) {//判断t的位置有没有大于或者等于l
+					clearInterval(t.d)//如果有就 停止定时器
+					t.style.left=0+'px';//让t的letf回到0
+				} else{
+				t.style.left=t.offsetLeft+10+'px';//如果没有就继续加10
+						}
+					},30)
+				}
+				var a=document.querySelector('div')
+				var c=document.querySelector('h1')
+				var f=document.querySelector('button')
+			f.addEventListener('click',function(){
+				g(c,500)
+				g(a,500)
+			})
+			})
+		</script>
+	</head>
+	<body>
+		<button>点击</button>
+		<div></div>
+		<h1>我是你爸爸</h1>
+	</body>
+</html>

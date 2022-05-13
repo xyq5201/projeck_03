@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.a{
+				position: fixed;
+				top: 0;
+				left: 0;
+				
+			}
+			.c{
+				width: 50px;
+				height: 50px;
+				background-color: aqua;
+				position: absolute;
+				left:-0px;
+				top: 0px;
+				z-index: 1;
+			}
+			.b{
+				width: 400px;
+				height: 50px;
+				background-color: red;
+				position: absolute;
+				left: -420px;
+				top: 0px;
+			}
+			.l{
+				width: 50px;
+				height: 50px;
+				background-color: aqua;
+				position: absolute;
+				left:-0px;
+				top: 60px;
+				z-index: 1;
+			}
+			.p{
+				width: 400px;
+				height: 50px;
+				background-color: red;
+				position: absolute;
+				left: -420px;
+				top: 60px;
+			}
+			.f{
+				width: 50px;
+				height: 50px;
+				background-color: aqua;
+				position: absolute;
+				left:-0px;
+				top:120px;
+				z-index: 1;
+			}
+			.d{
+				width: 400px;
+				height: 50px;
+				background-color: red;
+				position: absolute;
+				left: -420px;
+				top:120px;
+			}
+			.g{
+				width: 50px;
+				height: 50px;
+				background-color: aqua;
+				position: absolute;
+				left:-0px;
+				top:180px;
+				z-index: 1;
+			}
+			.h{
+				width: 400px;
+				height: 50px;
+				background-color: red;
+				position: absolute;
+				left: -420px;
+				top:180px;
+			}
+			.u{
+				width: 50px;
+				height: 50px;
+				background-color: aqua;
+				position: absolute;
+				left:-0px;
+				top:240px;
+				z-index: 1;
+			}
+			.t{
+				width: 400px;
+				height: 50px;
+				background-color: red;
+				position: absolute;
+				left: -420px;
+				top:240px;
+			}
+		</style>
+		<script src="2.js"></script>
+		<script>
+			window.addEventListener('load',function(){
+				var l=document.querySelector('.c')
+				var o=document.querySelector('.b')
+				var p=document.querySelector('.l')
+				var y=document.querySelector('.p')
+				var aa=document.querySelector('.f')
+				var bb=document.querySelector('.d')
+				var cc=document.querySelector('.g')
+				var dd=document.querySelector('.h')
+				var ee=document.querySelector('.u')
+				var gg=document.querySelector('.t')
+				l.addEventListener('mouseover',function(){
+					a(o,-4,function(){
+						l.innerHTML='-->'
+					})
+				})
+				l.addEventListener('mouseout',function(){
+				a(o,-400,function(){
+					l.innerHTML='<--'
+				})
+				})
+				p.addEventListener('mouseover',function(){
+					a(y,-4,function(){
+						p.innerHTML='-->'
+					})
+				})
+				p.addEventListener('mouseout',function(){
+				a(y,-400,function(){
+					p.innerHTML='<--'
+				})
+			})
+				aa.addEventListener('mouseover',function(){
+					a(bb,-4,function(){
+						aa.innerHTML='-->'
+					})
+				})
+				aa.addEventListener('mouseout',function(){
+				a(bb,-400,function(){
+					aa.innerHTML='<--'
+				})
+			})
+				cc.addEventListener('mouseover',function(){
+					a(dd,-4,function(){
+						cc.innerHTML='-->'
+					})
+				})
+				cc.addEventListener('mouseout',function(){
+				a(dd,-400,function(){
+					cc.innerHTML='<--'
+				})
+			})
+					ee.addEventListener('mouseover',function(){
+					a(gg,-4,function(){
+						ee.innerHTML='-->'
+					})
+				})
+				ee.addEventListener('mouseout',function(){
+				a(gg,-400,function(){
+					ee.innerHTML='<--'
+				})
+			})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="a">
+			<span class="c">--></span>
+			<div class="b"></div>
+			<span class="l">--></span>
+			<div class="p"></div>
+			<span class="f">--></span>
+			<div class="d"></div>
+			<span class="g">--></span>
+			<div class="h"></div>
+			<span class="u">--></span>
+			<div class="t"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				width: 100%;
+				height: 100%;
+			}
+			.a{
+				width: 100%;
+				height: 100%;
+				background-color: ;
+				position: relative;
+			}
+			.a div{
+				width: 80%;
+				height: 700px;
+				background-color: red;
+				margin-bottom: 10px;
+			}
+			
+			ul{
+				position: absolute;
+				left: 88%;
+				top: 25%;
+			}
+			li{
+				list-style: none;
+				
+			}
+			.u{
+				display: none;
+			}
+		</style>
+		<script>
+			window.addEventListener('load',function(){
+				var a=document.querySelector('.a')
+				var c=document.querySelector('.c')
+				var b=document.querySelector('ul')
+				var f=document.querySelector('.d')
+				var u=document.querySelector('.u')
+				var e=c.offsetTop;
+				//给dociment绑定滚动事件
+				//window.pageYOffset 页面滚动了的头部
+				document.addEventListener('scroll',function(){
+					if(window.pageYOffset>=e){//页面被滚动的头部大于或等于c的头部（意思就是如果页面滚动的头部等于c的头部）
+						b.style.position='fixed';//就把他改成固定定位
+						b.style.top=e-e+'px';//b的头部距离是c的头部距离减去c的头部距离
+					
+					}else {
+						b.style.position='absolute'//如果小于c的头部距离就改成绝对定位
+						b.style.top='25%'
+						
+					}
+					if(window.pageYOffset>=f.offsetTop){ //判断页面被滚动的头部大于或等于f的头部
+						u.style.display='block'
+					}else{
+						u.style.display='none'
+					}
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="a">
+			<div class="b"></div>
+			<div class="c"></div>
+			<div class="d"></div>
+			<div class="f"></div>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li class="u">返回</li>
+			</ul>
+		</div>
+	</body>
+</html>

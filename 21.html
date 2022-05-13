@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.a{
+				width: 0;
+				height: 0;
+				position: absolute;
+				
+			
+			}
+			.c{
+				width: 20px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+				top: 200px;
+				left: 0;
+			}
+			
+			.b{
+				width: 200px;
+				height: 500px;
+				background-color: aqua;
+				position: absolute;
+				top: 0;
+				left: -220px;
+				
+			}
+		</style>
+		<script src="1.js"></script>
+		<script>
+			window.addEventListener('load',function(){
+				var o=document.querySelector('.c')
+				var r=document.querySelector('.b')
+				var y=document.querySelector('.a')
+				y.addEventListener('mouseover',function(){
+					a(r,0)
+					a(o,210)
+				})
+				y.addEventListener('mouseout',function(){
+					a(r,-210)
+					a(o,0)
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="a">
+			<div class="c"><span>分享到</span></div>
+			<div class="b"></div>
+		</div>
+	</body>
+</html>

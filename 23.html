@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.f{
+				width: 0px;
+				height:0px;
+				position: fixed;
+				bottom: 0;
+				right: 0;
+			}
+			.b{
+				width: 500px;
+				height: 500px;
+				position: absolute;
+				right:-500px;
+				bottom: 0;
+				border: 1px solid red; 
+				background-color: red; 
+			}
+			span{
+				position: absolute;
+				top: 0;
+				right: 10px;
+				
+			}
+		</style>
+		<script src="2.js"></script>
+		<script>
+			window.addEventListener('load',function(){
+				
+			var g=document.querySelector('span')
+			var l=document.querySelector('.b')
+			setTimeout(function(){
+				a(l,-500)
+			},2000)
+			g.addEventListener('click',function(){
+				a(l,500)
+			})
+			})
+		</script>
+		
+	</head>
+	<body>
+		<div class="f">
+			
+			<div class="b"><span>X</span></div>
+		</div>
+	</body>
+</html>

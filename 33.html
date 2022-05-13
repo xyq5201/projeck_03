@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+		<script>
+			window.addEventListener('load',function(){
+				var a=document.querySelector('div')
+				var b=0;//获取手指初始坐标
+				var c=0;
+				var x=0;//获取盒子初始化坐标
+				var y=0
+				a.addEventListener('touchstart',function(e){
+					b=e.targetTouches[0].pageX;//计算出手指的位置
+					c=e.targetTouches[0].pageY;
+					//计算出当前盒子的位置
+					x=this.offsetLeft;
+					y=this.offsetTop;
+				})
+				a.addEventListener('touchmove',f)
+				function f(e){
+					//计算手指的移动距离 手指移动之后的坐标减去手指刚开始的坐标
+					var xx=e.targetTouches[0].pageX-b;
+					var yy=e.targetTouches[0].pageY-c;
+					//移动盒子 盒子原来的坐标+手指移动的距离
+					this.style.left=x+xx+'px';
+					this.style.top=y+yy+'px';
+					e.preventDefault();//阻止屏幕滚动的默认行为
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{
+				width: 400px;
+				height: 200px;
+				z-index: -1;
+				display: inline-block;
+			}
+			.a{
+				width: 16q00px;
+				height: 200px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.b{
+				width: 100px;
+				height: 90px;
+				position: absolute;
+				top:170px;
+				left: 20px;
+			}
+			.c{
+				width: 20px;
+				height: 20px;
+				background-color: red;
+				line-height: 500px;
+				border-radius: 50px 50px;
+				display: inline-block;
+				}
+				.d{
+					width: 30px;
+					height: 30px;
+					background: url(img/arrow-next.png) no-repeat;
+					z-index: 1;
+					position: absolute;
+					left: 370px;
+					top: 100px;
+				}
+				.e{
+					width: 30px;
+					height: 30px;
+					background:url(img/arrow-prev.png)no-repeat;
+					z-index: 1;
+					position: absolute;
+					left: 0px;
+					top: 100px;
+				}
+		</style>
+		<script>
+			window.addEventListener('load',function(){
+					function a(b,c,h){
+					b.d=setInterval(function(){
+						var f=(c-b.offsetLeft)/10;
+					f=	f>0?Math.ceil(f):Math.floor(f)
+						if (b.offsetLeft==c) {
+							clearInterval(b.d)
+							if(h){
+							h();
+						}
+						} else{
+						b.style.left=b.offsetLeft+f+'px';
+						}
+					},40)
+				}
+				var y=document.querySelector('.a').querySelectorAll('img')
+				var l=document.querySelector('.b').querySelectorAll('div')
+				var x=document.querySelector('.d')
+				var u=document.querySelector('.e')
+				for (var i=0;i<l.length;i++) {
+					l[i].setAttribute('index',i)
+					l[i].addEventListener('click',function(){
+						var xx=this.setAttribute('index')
+						for (var i=0;i<y.length;i++) {
+							y[i].innerHTML=u.innerHTML
+						}
+						y[i].style.display='block'
+					})
+				}
+					
+			})
+			
+				
+		</script>
+	</head>
+	<body>
+		<div class="a">
+			<img src="img/new_goods_1.jpg" />
+			<img src="img/new_goods_2.jpg">
+		
+		<div class="b">
+			<div class="c"></div>
+			<div class="c"></div>
+			<div class="c"></div>
+			<div class="c"></div>
+		</div>
+		<div class="d"> </div>
+		<div class="e"></div>
+		</div>
+	</body>
+</html>

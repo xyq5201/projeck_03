@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--
+		注意下面有几个bug以后开发要注意
+		第一个就是定位的问题 按f12还是一样跑
+		第二个就是l有问题 本来应该是鼠标移入l的框里面那前进返回才出现
+		结果移入到l隐藏了的图片那里的时候还是一样会出现
+		第三个图片不应该要定位 我用了定位是不对的因为以后如果加图片还是要一个一个改很麻烦
+		想办法让他变成一排不然每一个li都要用定位然后后面克隆出来的也要用定位
+		-->
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.a{
+				width:400px;
+				height: 400px;
+				position: fixed;
+				top: 100px;
+				left:40%;
+				border: 1px solid red;
+			}
+			.b{
+				width:400px;
+				height: 400px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				overflow: hidden;
+			}
+			img{
+				width: 400px;
+				height: 400px;
+			}
+			li{
+				list-style: none;
+				display: inline-block;
+			}
+			.c{
+				width: 30px;
+				height: 30px;
+				background-color: rgba(0,0,0,0.5);
+				text-align: center;
+				position: fixed;
+				top: 40%;
+				left:880px;
+				display: none;
+				color: #EAFFEA;
+			}
+			.e{
+				width: 30px;
+				height: 30px;
+				background-color: rgba(0,0,0,0.5);
+				text-align: center;
+				position: fixed;
+				top: 40%;
+				left:510px;
+				display: none;
+				color: #EAFFEA;
+			}
+			.gg{
+				width: 80px;
+				height: 20px;
+				position: absolute;
+				top:100%;
+				left: :;0px;
+			}
+			.gg>li{
+				width: 10px;
+				height: 10px;
+				border: 1px solid red;
+				border-radius: 50px 50px;
+				margin-left: 2px;
+			}
+			.img{
+				display: block;
+			}
+			.cc{
+				position: absolute;
+				top: 0;
+				left: 400px;
+			}
+			.opo{
+				position: absolute;
+				top: 0;
+				left:800px;
+			}
+			.aa{
+				position: absolute;
+				top: 0;
+				left:1200px;
+			}
+			.oooo{
+				position: absolute;
+				top: 0;
+				left:1600px;
+			}
+			
+			.p{
+				background-color: red;
+			}
+			.l{
+				width: 400px;
+				height: 400px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				
+			}
+		</style>
+		<script src="2.js"><!--引入js文件 这个js文件里面的代码就是缓动的代码--></script>
+		<script>
+			window.addEventListener('load',function(){
+				var c=document.querySelector('.c')
+				var e=document.querySelector('.e')
+				var a=document.querySelector('.a')
+				var b=document.querySelector('.b')
+				var ll=document.querySelector('.l')
+				var l=b.querySelectorAll('li')
+				var bb=document.querySelector('.bb')
+				var ff=bb.querySelector('.gg')
+				//拿到b的宽度就是ul的宽度 因为后面要用所有把他变成全局的
+				var op=b.offsetWidth;
+				//给a绑定移入事件
+				a.addEventListener('mouseenter',function(){
+					c.style.display='block'
+					e.style.display='block'
+					clearInterval(pp);//鼠标移入停止定时器
+					pp=null;//清除定时器变量
+				})
+				//给a绑定移出事件
+				a.addEventListener('mouseleave',function(){
+					c.style.display='none'
+					e.style.display='none'
+					pp=setInterval(function(){//鼠标移出开启定时器
+					c.click();
+				},3000)
+				})
+				//动态生成小圆 循环拿到l下面的子元素 有几个子元素就在ff下面创建多少个li 
+				for(var i=0;i<l.length;i++){
+					var li=document.createElement('li')
+					//设置当前小圆的索引号 用自定义属性来做
+					li.setAttribute('index',i)
+					ff.appendChild(li)
+					//先让生成的第一个li有颜色 不然页面一点开所有的li都没有颜色
+					ff.children[0].className='p'
+					//把li绑定点击事件
+					li.addEventListener('click',function(){
+					//当点击了其中一个小li的时候就拿到当前小li的索引号
+					var index=this.getAttribute('index');
+					//点击小圆滚动图片  当前滚动的是ul然后带着里面的li滚动 并不是li滚动
+					//ll的移动距离就是小圆的索引号x图片的宽度 注意是负数
+					//然调用js文件里面的函数aa(目标元素，-当前小li的索引号就是index*当前b盒子的宽度op)
+					aa(ll,-index*op);
+					lll();//调用封装的排他思想函数
+					
+				})
+				}
+				//克隆ul里面的一个li 
+				var oo=ll.children[0].cloneNode('true')
+				ll.appendChild(oo)
+				oo.className='oooo'
+				//声明一个全局变量 num
+				var num=0;
+				var cir=0;
+				//cir控制圆的播放
+				//给右边的按钮c做一个点击事件
+				c.addEventListener('click',function(){
+					//如果走到了最后面复制的一张图片的时候 此时就让ul快速回到left:0
+					if(num==ll.children.length-1){
+						ll.style.left=0;
+						//然后让num=0
+						num=0;
+					}
+					//每点击一次num加1
+					num++;
+					aa(ll,-num*op);
+					//每次点击一次让cir++
+					cir++;
+					//如果cir等于4说明走到克隆的这个图片了 就让cir回到0
+					if(cir==ff.children.length){
+						cir=0;
+					}
+					//用排他思想 把小圆里面的背景颜色都去了
+					for (i=0;i<ff.children.length;i++) {
+						ff.children[i].className=''
+					}
+					//只留下ol里面当前li的背景颜色
+					ff.children[cir].className='p'
+					
+				})
+				//给左边按钮e绑定事件
+				e.addEventListener('click',function(){
+					//判断如果num=0就是第一张图片的话
+					if(num==0){
+						//让num等于ll的子元素的长度-1
+						num=ll.children.length-1;
+						//然后ll的left=-num*上面得到b的宽度 也就是op记得+px
+						ll.style.left=-num*op+'px';
+						
+					}
+					//每点击一次num减1
+					num--;
+					aa(ll,-num*op);
+					//每次点击一次让cir--
+					cir--;
+					//判断如果cir小于0说明走到第一张图片了 就让cir回到ff子元素的长度
+					if(cir<0){
+						cir=ff.children.length-1;
+					}
+					lll();
+				})
+				//因为右边的按钮和左边的按钮的小圆的代码是一样的所有封装一个函数就可以了
+				function lll(){
+					//用排他思想 把小圆里面的背景颜色都去了
+					for (i=0;i<ff.children.length;i++) {
+						ff.children[i].className=''
+					}
+					//只留下ol里面当前li的背景颜色
+					ff.children[cir].className='p'
+				}
+				//自动播放
+				var pp=setInterval(function(){
+					c.click();//因为自动播放和右边的按钮的代码是一样的 所有我们只需要手动调用
+				},3000)
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div class="a"><!--大div-->
+			<div class="b"><!--包含img的div-->
+				<ul class="l"><!--图片的li-->
+					<li><img src="img/2118d099f3e2fa3f58fc7cfdb6b8912.jpg" class="img"/></li>
+					<li><img src="img/2d6f54826e186d9a68876fd70796be6.jpg" class="aa"/></li>
+					<li><img src="img/709f496e8f33a19c2083565905798cb.jpg" class="cc"/></li>
+					<li><img src="img/7b366b69eeb9324090a8d4ccc470ce6.jpg" class="opo"/></li>
+					
+				</ul>
+			</div>
+			<div class="c">></div><!--返回-->
+			<div class="e"><</div><!--前进-->
+			<div class="bb">
+				<ol class="gg">
+					
+				</ol>
+			</div>
+		</div>
+	</body>
+</html>

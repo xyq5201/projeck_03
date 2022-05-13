@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			
+			.h div{
+				width: 50px;
+				height: 200px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transition: all 3s  ;
+			}
+		
+			.a{
+				background-color: rgba(0,0,0,0);
+			}
+			.b{
+				background-color: aqua;
+			}
+			.c{
+				background-color:  #000000;
+			}
+			.d{
+				background-color:  #00FFFF;
+			}
+			.e{
+				background-color:  #3967FF;
+			}
+			.f{
+				background-color:  #EE9900;
+			}
+			
+			.h:hover .a{
+				background-color: rgba(0,0,0,1);
+				transform: rotate(150deg);
+			}
+				.h:hover .b{
+				transform: rotate(120deg);
+			}
+			.h:hover .c{
+				transform: rotate(90deg);
+			}
+			.h:hover .d{
+				transform: rotate(60deg);
+			}
+			.h:hover .e{
+				transform: rotate(30deg);
+			}
+			.h:hover .f{
+				transform: rotate(0deg);
+			}
+		</style>
+	</head>
+	<body>
+	<div class="h">
+		<div class="a">1</div>
+		<div class="b">2</div>
+		<div class="c">3</div>
+		<div class="d">4</div>
+		<div class="e">5</div>
+		<div class="f">6</div>
+	</div>
+	</body>
+</html>

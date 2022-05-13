@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			.a{
+				width: 450px;
+				height: 450px;
+				border: 1px solid red;
+				position: relative;
+			}
+			.b{
+				width: 450px;
+				
+			}
+			.c{
+				width: 100px;
+				height: 100px;
+				background-color: rgba(0,0,0,0.3);
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				display: none;
+				cursor: move;
+			}
+			.d{
+				
+				width: 540px;
+				height: 540px;
+				border: 1px solid red;
+				position: absolute;
+				top: 0;
+				left: 470px;
+				overflow: hidden;
+				display: none;
+			}
+			.e{
+				width: 1000px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+		<script>
+			
+			
+			window.addEventListener('load',function(){
+				var a=document.querySelector('.a')
+				var b=document.querySelector('.b')
+				var d=document.querySelector('.d')
+				var c=document.querySelector('.c')
+				//给大盒子绑定鼠标经过的事件mouseover
+				a.addEventListener('mouseover',function(){
+				//那个大盒子里面的小盒子和旁边的盒子出现
+					d.style.display='block';
+					c.style.display='block'
+				})
+				//给大盒子绑定鼠标离开的事件mouseout
+				a.addEventListener('mouseout',function(){
+				//那个大盒子里面的小盒子和旁边的盒子出现
+					d.style.display='none'
+					c.style.display='none'
+				})
+				//给大盒子绑定鼠标移入的事件mousemove
+				a.addEventListener('mousemove',function(e){
+					//获取鼠标在盒子里面的位置
+					var x=e.pageX-this.offsetLeft;
+					var y=e.pageY-this.offsetTop;
+					//最大移动距离就是大盒子的大小减去大盒子里面小盒子的大小
+					var l=a.offsetWidth-c.offsetWidth;
+					var p=a.offsetHeight-c.offsetHeight;
+					//将鼠标的位置减去大盒子里面 的盒子的一半/2那个小盒子就到了鼠标的中间
+					var xx=x-c.offsetWidth/2;
+					var yy=y-c.offsetHeight/2;
+					//当小盒子超出大盒子的边设置一个东西卡到他 这个时候就用判断
+					if(xx<=0){
+						xx=0;
+					}else  if(xx>=l){
+						xx=l;
+					}
+					if(yy<=0){
+						yy=0;
+					}else if(yy>=p){
+						yy=p;
+					}
+					//把得到的值给小盒子
+					c.style.left=xx+'px'
+					c.style.top=yy+'px'
+					//获取到旁边的大盒子里面的图片
+					var e=document.querySelector('.e')
+					//用旁边的大盒子图片的大小减去旁边大盒子的大小
+					var eX=e.offsetWidth-d.offsetWidth;
+					var eY=e.offsetHeight-d.offsetHeight;
+					//用鼠标的位置减去大盒子里面 的盒子的一半/2那个小盒子就到了鼠标的中间那个
+					//*用旁边的大盒子图片的大小减去旁边大盒子的大小/最大移动距离就是大盒子的
+					//大小减去大盒子里面小盒子的大小
+					var ll=xx*eX/l;
+					var rr=yy*eY/p;
+					//上面得到的结果给到 大盒子里面的图片记得在等于前面加-后面必须加px不然没效果
+					e.style.left=-ll+'px'
+					e.style.top=-rr+'px'
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="a">
+			<img src="img/fresh_goods_2.jpg"  class="b"/>
+			<div class="c"></div>
+			<div class="d">
+				<img src="img/fresh_goods_2.jpg" class="e" />
+			</div>
+		</div>
+	</body>
+</html>

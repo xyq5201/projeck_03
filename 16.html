@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 1320px;
+				height: 700px;
+				background-color: red;
+				margin-bottom: 20px;
+			}
+			ul{
+				list-style: none;
+				position: absolute;
+				left: 1330px;
+				top:82%;
+			}
+		</style>
+		<script>
+			window.addEventListener('load',function(){
+				var a=document.querySelector('ul')
+				var b=document.querySelector('.b').querySelectorAll('div')
+				var e=document.querySelector('.a')
+				var c=b[1].offsetTop;//获取大div里面第二个头部的位置
+				var d=b[3].offsetTop;//获取大div里面第四个头部的位置
+				//给document绑定滚动事件
+				document.addEventListener('scroll',function(){
+					if (window.pageYOffset>=c) {
+					//判断如果页面的滚动的数字大于或者等于我第二个div的头部数字ul就变成固定定位
+					//意思就是只要页面滚动到超过第二个div的头部位置 ul就变成固定定位了
+					//pageYOffset 获得页面滚动了多少
+						a.style.position='fixed';
+						a.style.top=c-c+'px'
+					} else {
+						//如果小于就变回绝对定位
+						a.style.position='absolute'
+							a.style.top='82%'
+					}
+					if (window.pageYOffset>=d) {
+						//判断页面滚动的数字有没有超过第三个div的头部位置
+						e.style.display='block'
+						//如果超过e就成出来
+					} else{
+						//如果没有e就不出来
+						e.style.display='none'
+					}
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<!--里面的div代表以后开发的内容-->
+		<div class="b">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<ul>
+				<li>1</li>
+				<li>1</li>
+				<li class="a" style="display: none;">th</li>
+			</ul>
+		</div>
+	</body>
+</html>

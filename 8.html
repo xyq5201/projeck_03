@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.a{
+				width: 400px;
+				height: 400px;
+			}
+			.d{
+				position: relative;
+				height: 398px;
+				border: 1px solid red;
+			}
+			.d img{
+				width: 398px;
+				height: 398px;
+			}
+			.c{
+				position: absolute;
+				top: 0px;
+				left: 0px ;
+				width: 200px;
+				height: 200px;
+				background-color: #CCCCCC;
+				opacity: .5;
+				border: 1px solid #CCCCCC;
+				cursor: move;
+				display: none;
+				
+			}
+			.b{
+				display: none;
+				position: absolute;
+				left: 410px;
+				top: 0;
+				width: 500px;
+				height: 500px;
+				background-color: #CCCCCC;
+				z-index: 999;
+				border: 1px solid #CCCCCC;
+				overflow: hidden;
+			}
+			.e{
+				width: 600px;
+				height: 600px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+		<script>
+			window.addEventListener('load',function(){
+				var a=document.querySelector('.d');
+				var b=document.querySelector('.c');
+				var c=document.querySelector('.b');
+				a.addEventListener('mouseenter',function(){
+					b.style.display='block';
+					c.style.display='block';
+				})
+				a.addEventListener('mouseout',function(){
+					c.style.display='none'
+					b.style.display='none'
+				})
+				a.addEventListener('mousemove',function(e){
+					var x=e.pageX-this.offsetLeft;
+					var y=e.pageY-this.offsetTop;
+					var maskX=x-b.offsetWidth/2;
+					var maskY=y-b.offsetHeight/2;
+					var maskMax=a.offsetWidth-b.offsetWidth;
+					if (maskX<=0) {
+						maskX=0;
+					} else if(maskX>=maskMax){
+						maskX=maskMax;
+					}
+					if (maskY<=0) {
+						maskY=0
+					} else if(maskY>=maskMax){
+						maskY=maskMax;
+					}
+					b.style.left=maskX+'px'
+					b.style.top=maskY+'px'
+					var f=document.querySelector('.e')
+					var f=f.offsetWidth-b.offsetWidth;
+					var bigX=maskX*f/maskMax
+					var bigY=maskY*f/maskMax;
+					f.style.left=-bigX+'px';
+					f.style.top=-bigY+'px';
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="a">
+			<div class="d">
+				<img src="img/fresh_goods_2.jpg" />
+				<div class="c"></div>
+				<div class="b">
+					<img src="img/fresh_goods_2.jpg" class="e" />
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

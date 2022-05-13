@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 1020px;
+				height:500px;
+				background-color: red;
+				margin-top: 20px;
+			}
+			ul{
+				list-style: none;
+				position: absolute;
+				right: 0;
+				top: 80%;
+			}
+		</style>
+		<script src="2.js"></script>
+		<script>
+			window.addEventListener('load',function(){
+				var a=document.querySelector('.a').querySelectorAll('div')
+				var c=document.querySelector('ul')
+				var  b=document.querySelector('.b')
+				var f=a[1].offsetTop;
+				var g=a[3].offsetTop;
+				document.addEventListener('scroll',function(){
+					if(window.pageYOffset>=f){
+						c.style.position='fixed'
+						c.style.top=f-f+'px'
+					}else{
+						c.style.position='absolute'
+						c.style.top='80%'
+					}
+					if(window.pageYOffset>=g){
+						b.style.display='block'
+					}else{
+						b.style.display='none'
+					}
+					//点击谁就给谁绑定点击事件
+					b.addEventListener('click',function(){
+						//因为是整个页面动使用目标元素是window
+						aa(window,0)
+					})
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="a">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<ul>
+				<li>1</li>
+				<li>1</li>
+				<li class="b" style="display: none;">返回</li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 300px;
+				height: 300px;
+				background-color: red;
+			}
+		</style>
+		<script>
+			window.addEventListener('load',function(){
+				var a=document.querySelector('div')
+				a.addEventListener('mousemove',function(e){
+					var b=e.pageX-this.offsetLeft;
+					var c=e.pageY-this.offsetTop;
+					a.innerHTML='鼠标离盒子左边的距离是'+b+'鼠标离盒子上边的距离是'+c
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>

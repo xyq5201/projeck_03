@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+				top: 40px;
+				left: 0;
+			}
+		</style>
+		<script>
+			window.addEventListener('load',function(){
+				function a(b,c,h){
+					clearInterval(b.d)
+					b.d=setInterval(function(){
+						var f=(c-b.offsetLeft)/10;
+					f=	f>0?Math.ceil(f):Math.floor(f)
+						if (b.offsetLeft==c) {
+							clearInterval(b.d)
+							if(h){
+							h();
+						}
+						} else{
+						b.style.left=b.offsetLeft+f+'px';
+						}
+					},30)
+				}
+				var e=document.querySelector('div');
+				var f=document.querySelector('.a')
+				var h=document.querySelector('.b')
+				f.addEventListener('click',function(){
+					a(e,500,function(){
+						//alert('我来了')
+						e.style.backgroundColor='aqua'
+					})
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<div></div>
+		<button class="a">点击到500</button>
+	</body>
+</html>

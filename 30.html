@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				width: 100%;
+				height:2000px;
+			}
+			.b{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+				top: 200%;
+				right: 0;
+			}
+			.a{
+				width: 500px;
+				height: 200px;
+				border: 1px solid red; 
+			}
+		</style>
+		<script>
+			window.addEventListener('load',function(){
+				var a=document.querySelector('.b')
+				var d=document.querySelector('body')
+				var c=a.offsetWidth
+				//给你点击谁返回顶部就给谁绑定点击事件
+				a.addEventListener('click',function(){
+					aa(window,0)
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="b">返回上面</div>
+		<div class="a"></div>
+	</body>
+</html>

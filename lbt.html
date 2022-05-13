@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+    margin: 0;
+    padding: 0;
+}
+.slider {
+    width: 310px;
+    height: 265px;
+    margin: 100px auto;
+    position: relative;
+    overflow: hidden;
+}
+.slider-img {
+    width: 310px;
+    height: 220px;
+}
+ul {
+    list-style: none;
+}
+li {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.slider-ctrl {
+    text-align: center;
+    padding-top: 10px;
+}
+.slider-ctrl-con {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(../images/icon.png) no-repeat -24px -780px;
+    text-indent: -99999px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.slider-ctrl-con.current {
+    background-position: -24px -760px;
+}
+.prev,.next {
+    position: absolute;
+    top: 40%;
+    width: 30px;
+    height: 35px;
+    background: url(../images/icon.png) no-repeat;
+}
+.prev {
+    left: 10px;
+}
+.next {
+    right: 10px;
+    background-position: 0 -44px;
+}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div class="slider" id="slider">
+        <div class="slider-img">
+            <ul>
+                <li><a href="#"><img src="img/fresh_goods_2.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="img/new_goods_1.jpg4" alt=""/></a></li>
+                <li><a href="#"><img src="img/new_goods_3.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="img/new_goods_4.jpg" alt=""/></a></li>
+            </ul>
+        </div>
+       		 <div class="slider-ctrl">
+       		 //在这里自动生成小圆点
+            <span class="prev" id="prev"></span>
+            <span class="next" id="next"></span>
+        </div>
+    </div>
+		</div>
+		<script>
+			window.onload = function(){
+    // 0 获取相关元素
+    // 总容器
+    var slider = document.getElementById('slider');
+    // 所有图片li的集合
+    var imgLiS = slider.children[0].children[0].children;
+    // 控制按钮的容器
+    var ctrlDiv = slider.children[1];
+    // 左箭头（上一张按钮）
+    var prev = document.getElementById('prev')
+    // 右箭头（下一张按钮）
+    var next = document.getElementById('next')
+    // 容器的宽度
+    var width = slider.offsetWidth;
+    // 用一个变量记录当前显示的图片的索引
+    var index = 0;
+ 
+    // 1 根据图片数量生成对应的小圆点
+    for(var i=imgLiS.length-1;i>=0;i--){
+        var newPoint = document.createElement('span');
+        // 给每个节点里面记录他是第几个节点，方便后期点击时候知道是第几个
+        newPoint.className = "slider-ctrl-con";
+        newPoint.innerHTML = i;
+        // 放到最前面
+        ctrlDiv.insertBefore(newPoint,ctrlDiv.children[0])
+ 
+        // 2 所有的图片都放到右边
+        imgLiS[i].style.left = width+"px"
+    }
+ 
+    // 2 轮播图显示第一幅图
+    imgLiS[index].style.left = 0;
+ 
+    // 获取所有的小圆点
+    var ctrlS = ctrlDiv.children;
+    // 3 点亮第一个小圆点
+    light()
+ 
+    // 4 点击左箭头可以看前一幅图，点亮对应的小圆点
+    prev.onclick = prevImg;
+ 
+    // 5 点击右箭头可以看后一幅图，点亮对应的小圆点
+    next.onclick = nextImg;
+ 
+    // 6 点击小圆点，点亮这个小圆点，并显示对应的图片
+    for(var i=0;i<imgLiS.length;i++){
+        ctrlS[i].onclick = function(){
+            var num = +this.innerHTML;
+            if(num>index){
+                // 我认为后面的图在右边
+                imgLiS[num].style.left = width+"px";
+                // 当前图去左边
+                move(imgLiS[index],'left',-width)
+                // 我要看的图去中间
+                move(imgLiS[num],'left',0)                
+            }
+            if(num<index){
+                // 我认为前面的图在左边
+                imgLiS[num].style.left = -width+"px";
+                // 当前图去右边
+                move(imgLiS[index],'left',width)
+                // 我要看的图去中间
+                move(imgLiS[num],'left',0)                
+            }
+ 
+            // 更新index
+            index = num;
+            // 点亮小圆点
+            light()
+        }
+    }
+ 
+    // 7 可以自动轮播图： 每隔3秒看下一张
+    var timer = setInterval(nextImg,3000)
+    // 8 鼠标移入停止轮播
+    slider.onmouseenter = function(){
+        clearInterval(timer)
+    }
+    // 9 鼠标移出继续轮播 
+    slider.onmouseleave = function(){
+        clearInterval(timer)
+        timer = setInterval(nextImg,3000)
+    }
+     
+     
+     
+    // 由于点亮小圆点多次执行，封装成函数
+    function light(){
+        for(var i=0;i<imgLiS.length;i++){
+            ctrlS[i].className = "slider-ctrl-con"
+        }
+        ctrlS[index].className = "slider-ctrl-con current"
+    }
+ 
+    // 看上一张图的函数
+    function prevImg(){
+        var num = index-1;
+        if(num<0){
+            // 索引最小是0，如果要看的索引比0小，就是最后一张，也就是第length-1张
+            num = imgLiS.length-1;
+        }
+        // 我认为前一张图一定在左边
+        imgLiS[num].style.left = -width+"px";
+        // 当前图片运动到右边
+        move(imgLiS[index],'left',width)
+        // 要看的图片运动到中间
+        move(imgLiS[num],'left',0)
+        // 运动完成以后容器里面显示的是num这个图
+        // 所以记录当前索引的index里面的值变成num
+        index = num;
+        light()
+ 
+    }
+ 
+    // 看下一张图的函数
+    function nextImg(){
+        var num = index + 1;
+        if(num>imgLiS.length-1){
+            num = 0;
+        }
+        // 我认为下一张一定在右边
+        imgLiS[num].style.left = width+"px";
+        // 当前图片去左边
+        move(imgLiS[index],'left',-width)
+        // 我要看的下一张去中间
+        move(imgLiS[num],'left',0)
+        // 更新index的值
+        index = num;
+        light()
+    }
+ 
+}
+		</script>
+	</body>
+</html>

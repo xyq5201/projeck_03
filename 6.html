@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			
+			.a{
+				width: 500px;
+				height: 300px;
+				background-color: red;
+				position: relative;
+				margin: 0 auto;
+				margin-top: 10%;
+				display: none;
+			}
+			.b{
+				width: 300px;
+				height: 200px;
+				position: absolute;
+				left: 20%;
+				top: 10%;
+			}
+			h2{
+				width:160%;
+				height: 30px;
+				border: 1px solid aqua;
+				margin-top: -15px;
+				text-align: center;
+				margin-left:-100px ;
+			}
+			.c{
+				margin-bottom: 30px;
+				margin-left: 18px;
+			}
+			button{
+				margin-left: 30%;
+				margin-top: 10%;
+			}
+			.r{
+				
+				text-align: center;
+			}
+			.l{
+				width: 20px;
+				height: 20px;
+			}
+		</style>
+		<script>
+			window.addEventListener('load',function(){
+				var a=document.querySelector('.r')
+				var b=document.querySelector('.a')
+				var c=document.querySelector('body')
+				var g=document.querySelector('.l')
+				var o=document.querySelector('h2')
+				//给a绑定点击事件
+				a.addEventListener('click',function(){
+					b.style.display='block'//点击a之后登录框出现
+					c.style.backgroundColor='rgba(0,0,0,0.5)'//body的背景颜色改了
+					a.style.display='none'//a里面的文字消失
+				})
+				//给g绑定点击事件
+				g.addEventListener('click',function(){
+					b.style.display='none';//点击了g之后登录框消失
+					a.style.display='block'//a里面的文字出现
+					c.style.backgroundColor='rgba(0,0,0,0)'//body就没有背景颜色了
+				})
+				//给b绑定按下的事件
+				b.addEventListener('mousedown',function(e){
+//					var t=e.pageX;//当鼠标按下的时候获取鼠标在b里面的位置
+//					var y=e.pageY;
+					var t=e.pageX-b.offsetLeft;
+					var y=e.pageY-b.offsetTop;
+					//本来应该是上面这些代码的但是有错误 就是按下的时候鼠标会改变位置
+					//所有我就只写了上面的代码 没有错误 以后开发有错误可以试试获取
+					//鼠标在盒子里面的位置
+					//给documet绑定移动事件 因为是按下之后才移动的所以要写在按下事件里面
+					//函数写在外面的原因是因为后面要弹起 要结束所以需要写在外面 
+					document.addEventListener('mousemove',p)
+					function p(e){
+						b.style.left=e.pageX-t+'px'
+						//用鼠标在页面里面的位置-去页面里面的位置
+						//然后把这些给到文本框里面去
+						b.style.top=e.pageY-y+'px'
+						
+					}
+					//给document绑定弹起事件
+					document.addEventListener('mouseup',function(){
+						document.removeEventListener('mousemove',p);
+						//结束移动事件
+					})
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<p class="r">点击 弹出登录</p>
+		<div class="a">
+			<div class="l">X</div>
+			<div class="b">
+				<h2>登录会员</h2>
+				<span>
+				用户名：
+			</span>
+			<input type="text" value="请输入用户名" class="c"/>
+			<br />
+			<span>
+				登录密码：
+			</span>
+			<input type="text" value="请输入登录密码" />
+			<button>登录会员</button>
+			</div>
+		</div>
+	</body>
+</html>

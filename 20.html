@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.t{
+				width:0px;
+				height: 0px;
+				position: fixed;
+				bottom: 0px;
+				right: 0px;
+			}
+			.a{
+				width: 600px;
+				height: 600px;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				border: 1px solid red;
+				
+			}
+			span{
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
+		</style>
+		<script>
+			window.addEventListener('load',function(){
+				function a(b,c,d){
+					clearInterval(b.e)
+				b.e=setInterval(function(){
+					var f=(c-b.offsetTop)/10;
+					f=f>0?Math.ceil(f):Math.floor(f)
+					if(b.offsetLeft==c){
+						clearInterval(b.e)
+						if(d){
+						d();
+						}
+					}else{
+						b.style.top=b.offsetTop+f+'px';
+						
+					}
+				},100)
+				}
+				var g=document.querySelector('.a')
+				var l=document.querySelector('span')
+				l.addEventListener('click',function(){
+					a(g,500)
+				})
+			})
+			
+			
+		
+		</script>
+	</head>
+	<body>
+		<div class="t">
+			<div class="a">
+		<span>x</span>
+		</div>
+		</div>
+	</body>
+</html>
